@@ -12,6 +12,19 @@ main :: proc() {
 
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
+
+		button := rl.Rectangle{100, 100, 250, 50}
+		rl.DrawRectangle(
+			cast(i32)button.x,
+			cast(i32)button.y,
+			cast(i32)button.width,
+			cast(i32)button.height,
+			rl.BLACK,
+		)
+		if rl.CheckCollisionPointRec(rl.GetMousePosition(), button) {
+			return
+		}
+
 		rl.ClearBackground(color_light_blue)
 		rl.EndDrawing()
 	}

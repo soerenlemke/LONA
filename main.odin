@@ -30,9 +30,23 @@ main :: proc() {
 	append(
 		&app.components,
 		component.Component {
+			type = component.Label {
+				text = "menu",
+				pos_x = window_width / 2 - 30,
+				pos_y = 50,
+				font_size = 30,
+				color = rl.WHITE,
+			},
+			visible = true,
+		},
+	)
+
+	append(
+		&app.components,
+		component.Component {
 			type = component.Button {
-				rect = {100, 100, 250, 50},
-				color = rl.BLACK,
+				rect = {window_width / 2 - 125, 100, 250, 50},
+				color = rl.GRAY,
 				hover_color = rl.LIGHTGRAY,
 				label = "Click me!",
 				execute = execute_one,
@@ -45,13 +59,13 @@ main :: proc() {
 		&app.components,
 		component.Component {
 			type = component.Button {
-				rect = {100, 200, 250, 50},
-				color = rl.BLACK,
+				rect = {window_width / 2 - 125, 200, 250, 50},
+				color = rl.GRAY,
 				hover_color = rl.LIGHTGRAY,
 				label = "Another button!",
 				execute = execute_two,
 			},
-			visible = false,
+			visible = true,
 		},
 	)
 

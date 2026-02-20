@@ -8,6 +8,9 @@ draw :: proc(c: ^Component) {
 	switch &val in c {
 	case Button:
 		button_draw(&val)
+		if button_is_clicked(&val) && val.execute != nil {
+			val.execute()
+		}
 	}
 }
 

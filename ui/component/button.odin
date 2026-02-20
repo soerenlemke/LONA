@@ -7,6 +7,7 @@ Button :: struct {
 	color:       rl.Color,
 	hover_color: rl.Color,
 	label:       cstring,
+	execute:     proc(),
 }
 
 button_draw :: proc(b: ^Button) {

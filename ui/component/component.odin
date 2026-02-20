@@ -4,6 +4,7 @@ Component :: union {
 	Button,
 }
 
+// `draw` draws the component and executes its function if clicked
 draw :: proc(c: ^Component) {
 	switch &val in c {
 	case Button:
@@ -12,12 +13,4 @@ draw :: proc(c: ^Component) {
 			val.execute()
 		}
 	}
-}
-
-is_clicked :: proc(c: ^Component) -> bool {
-	switch &val in c {
-	case Button:
-		return button_is_clicked(&val)
-	}
-	return false
 }

@@ -9,6 +9,7 @@ window_width :: 1280
 window_height :: 720
 
 App :: struct {
+	bg_color:   rl.Color,
 	components: [dynamic]component.Component,
 }
 
@@ -21,12 +22,13 @@ execute_two :: proc() {
 }
 
 main :: proc() {
-	a: App
+	app: App
+	app.bg_color = rl.BLACK
 
 	rl.InitWindow(window_width, window_height, "Hellope")
 
 	append(
-		&a.components,
+		&app.components,
 		component.Component(
 			component.Button {
 				rect = {100, 100, 250, 50},
@@ -39,7 +41,7 @@ main :: proc() {
 	)
 
 	append(
-		&a.components,
+		&app.components,
 		component.Component(
 			component.Button {
 				rect = {100, 200, 250, 50},
@@ -53,13 +55,13 @@ main :: proc() {
 
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
-		rl.ClearBackground(rl.GRAY)
+		rl.ClearBackground(app.bg_color)
 
-		renderer.draw(&a.components)
+		renderer.draw(&app.components)
 
 		rl.EndDrawing()
 	}
 
-	delete(a.components)
+	delete(app.components)
 	rl.CloseWindow()
 }

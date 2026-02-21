@@ -2,7 +2,6 @@ package main
 
 import "application"
 import ui_component "application/ui/component"
-import ui_renderer "application/ui/renderer"
 import "core:fmt"
 import rl "vendor:raylib"
 
@@ -72,7 +71,10 @@ main :: proc() {
 		rl.BeginDrawing()
 		rl.ClearBackground(app.window.bg_color)
 
-		ui_renderer.draw(&app.components)
+		// TODO: a global renderer should draw the active scene
+		for &comp in app.components {
+			ui_component.draw(&comp)
+		}
 
 		rl.EndDrawing()
 	}

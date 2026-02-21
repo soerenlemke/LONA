@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Symbole Übersicht</title>
+    <style>
+        body {
+            background: #0a0a0f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            font-family: sans-serif;
+            color: #607080;
+        }
+
+        h1 {
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #405060;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #304050;
+            border-bottom: 1px solid #1a2530;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 90px;
+        }
+
+        .cell {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+            font-size: 28px;
+            background: #0a0f18;
+            border: 1px solid #1a2530;
+        }
+
+        .label {
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-align: center;
+            color: #304050;
+            text-transform: uppercase;
+        }
+
+        .code {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #203040;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Symbole — Room Simulator</h1>
+
+    <!-- STRUKTUR -->
+    <div class="section">
+        <div class="section-title">Struktur</div>
+        <div class="grid">
+            <div class="tile">
+                <div class="cell" style="color:#4a5a6a">█</div>
+                <div class="label">Wand</div>
+                <div class="code">U+2588</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#1e2e3e">·</div>
+                <div class="label">Boden</div>
+                <div class="code">U+00B7</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#a07040">░</div>
+                <div class="label">Tür offen</div>
+                <div class="code">U+2591</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#a07040">▓</div>
+                <div class="label">Tür zu</div>
+                <div class="code">U+2593</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROBOTER -->
+    <div class="section">
+        <div class="section-title">Roboter</div>
+        <div class="grid">
+            <div class="tile">
+                <div class="cell" style="color:#60d0ff">@</div>
+                <div class="label">Roboter</div>
+                <div class="code">U+0040</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#40ff90">⌂</div>
+                <div class="label">Ladestation</div>
+                <div class="code">U+2302</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCHMUTZ & SCHÄDEN -->
+    <div class="section">
+        <div class="section-title">Schmutz & Schäden</div>
+        <div class="grid">
+            <div class="tile">
+                <div class="cell" style="color:#8B5E3C">%</div>
+                <div class="label">Schmutz leicht</div>
+                <div class="code">U+0025</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#6a3a18">%</div>
+                <div class="label">Schmutz schwer</div>
+                <div class="code">U+0025</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#2060c0">≈</div>
+                <div class="label">Wasserleck</div>
+                <div class="code">U+2248</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#ff8040">!</div>
+                <div class="label">Warnung</div>
+                <div class="code">U+0021</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PFLANZEN -->
+    <div class="section">
+        <div class="section-title">Pflanzen</div>
+        <div class="grid">
+            <div class="tile">
+                <div class="cell" style="color:#3a8a3a">♦</div>
+                <div class="label">Klein</div>
+                <div class="code">U+2666</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#3a8a3a">♣</div>
+                <div class="label">Mittel</div>
+                <div class="code">U+2663</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#3a8a3a">♠</div>
+                <div class="label">Groß</div>
+                <div class="code">U+2660</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#806040">†</div>
+                <div class="label">Verwelkt</div>
+                <div class="code">U+2020</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MASCHINEN -->
+    <div class="section">
+        <div class="section-title">Maschinen</div>
+        <div class="grid">
+            <div class="tile">
+                <div class="cell" style="color:#708898">▣</div>
+                <div class="label">OK</div>
+                <div class="code">U+25A3</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#ffa030">▣</div>
+                <div class="label">Beschädigt</div>
+                <div class="code">U+25A3</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#ff4040">▣</div>
+                <div class="label">Defekt</div>
+                <div class="code">U+25A3</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#708898">╬</div>
+                <div class="label">Rohr OK</div>
+                <div class="code">U+256C</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#ff4040">╬</div>
+                <div class="label">Rohr defekt</div>
+                <div class="code">U+256C</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#708898">▤</div>
+                <div class="label">Panel</div>
+                <div class="code">U+25A4</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ENERGIE & RESSOURCEN -->
+    <div class="section">
+        <div class="section-title">Energie & Ressourcen</div>
+        <div class="grid">
+            <div class="tile">
+                <div class="cell" style="color:#ffd060">¤</div>
+                <div class="label">Energieknoten</div>
+                <div class="code">U+00A4</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#ffd060">$</div>
+                <div class="label">Energie-Pickup</div>
+                <div class="code">U+0024</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#2060c0">○</div>
+                <div class="label">Wasserquelle</div>
+                <div class="code">U+25CB</div>
+            </div>
+            <div class="tile">
+                <div class="cell" style="color:#2060c0">┼</div>
+                <div class="label">Wasserrohr</div>
+                <div class="code">U+253C</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

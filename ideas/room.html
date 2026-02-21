@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Room Mockup</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            font-family: sans-serif;
+            color: #aaa;
+        }
+
+        h2 {
+            color: #888;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .screen {
+            background: #0a0a0a;
+            padding: 10px;
+            border: 1px solid #222;
+        }
+
+        pre {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            line-height: 1.4;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Courier New';
+            font-size: 13px;
+        }
+
+        .legend-char {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Farben */
+        .wall {
+            color: #4a5a6a;
+        }
+
+        .floor {
+            color: #1a2530;
+        }
+
+        .robot {
+            color: #60d0ff;
+        }
+
+        .dirt {
+            color: #8B5E3C;
+        }
+
+        .plant {
+            color: #3a8a3a;
+        }
+
+        .broken {
+            color: #ff4040;
+        }
+
+        .machine {
+            color: #708898;
+        }
+
+        .energy {
+            color: #ffd060;
+        }
+
+        .water {
+            color: #2060c0;
+        }
+
+        .charge {
+            color: #40ff90;
+        }
+
+        .door {
+            color: #a07040;
+        }
+
+        .ui {
+            color: #506070;
+        }
+
+        .ui-val {
+            color: #90b8c0;
+        }
+
+        .ui-warn {
+            color: #ff8040;
+        }
+
+        .ui-good {
+            color: #40c060;
+        }
+
+        .ui-label {
+            color: #405060;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Room Simulator – ASCII Mockup</h2>
+
+    <div class="screen">
+        <pre>
+<span class="ui-label">╔══════════════════════════════════════╗  ┌─────────────────┐</span>
+<span class="ui-label">║</span> <span class="wall">████████████████████████████████████</span> <span class="ui-label">║  │</span> <span class="ui-label">ROBOTER STATUS   </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">··················</span><span class="water">≈≈</span><span class="floor">···············</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-good">ENERGIE  ████░░  </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">··</span><span class="plant">♣</span><span class="floor">·············</span><span class="water">≈≈</span><span class="floor">···············</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-warn">AUFGABE  PUTZEN  </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">··</span><span class="plant">♣</span><span class="floor">··············</span><span class="floor">·····</span><span class="dirt">%</span><span class="floor">···</span><span class="dirt">%</span><span class="floor">·····</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-label">ZIEL     </span><span class="water">ROHR►   </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">·················</span><span class="dirt">%</span><span class="dirt">%</span><span class="floor">················</span><span class="wall">█</span> <span class="ui-label">║  └─────────────────┘</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">···</span><span class="machine">╔═╗</span><span class="floor">············</span><span class="dirt">%</span><span class="floor">···············</span><span class="wall">█</span> <span class="ui-label">║  ┌─────────────────┐</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">···</span><span class="broken">╔═╗</span><span class="floor">·····</span><span class="robot">@</span><span class="floor">···········</span><span class="machine">▓▓▓</span><span class="floor">·······</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-label">RAUM STATUS      </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">···</span><span class="broken">╚═╝</span><span class="floor">·····</span><span class="floor">···········</span><span class="machine">▓▓▓</span><span class="floor">·······</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-label">SAUBER   </span><span class="ui-warn">▓▓░░░░░  </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">···</span><span class="machine">╚═╝</span><span class="floor">·····················</span><span class="machine">▓▓▓</span><span class="floor">·······</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-label">PFLANZEN </span><span class="ui-good">████░░░  </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">·······················</span><span class="energy">$</span><span class="floor">················</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-label">SYSTEME  </span><span class="ui-warn">██░░░░░  </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">·············</span><span class="dirt">%</span><span class="floor">·····</span><span class="charge">⌂</span><span class="floor">················</span><span class="wall">█</span> <span class="ui-label">║  └─────────────────┘</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">·············</span><span class="dirt">%</span><span class="dirt">%</span><span class="floor">·····················</span><span class="wall">█</span> <span class="ui-label">║  ┌─────────────────┐</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">··</span><span class="plant">♠</span><span class="floor">··········</span><span class="dirt">%</span><span class="floor">·····················</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-label">BEFEHLE          </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">··</span><span class="plant">♠</span><span class="floor">···································</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-good">1. PUTZEN        </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">█</span><span class="floor">···································</span><span class="wall">█</span> <span class="ui-label">║  │</span> <span class="ui-label">2. REPARIEREN    </span><span class="ui-label">│</span>
+<span class="ui-label">║</span> <span class="wall">████████████</span><span class="door">░░</span><span class="wall">████████████████████</span> <span class="ui-label">║  │</span> <span class="ui-label">3. GIESSEN       </span><span class="ui-label">│</span>
+<span class="ui-label">╚══════════════════════════════════════╝  │</span> <span class="ui-label">4. LADEN         </span><span class="ui-label">│</span>
+<span class="ui-label">                                          └─────────────────┘</span>
+</pre>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><span class="legend-char robot">@</span><span>Roboter</span></div>
+        <div class="legend-item"><span class="legend-char wall">█</span><span>Wand</span></div>
+        <div class="legend-item"><span class="legend-char floor">·</span><span>Boden</span></div>
+        <div class="legend-item"><span class="legend-char dirt">%</span><span>Schmutz</span></div>
+        <div class="legend-item"><span class="legend-char plant">♣ ♠</span><span>Pflanzen</span></div>
+        <div class="legend-item"><span class="legend-char machine">▓ ╔╗</span><span>Maschine (ok)</span></div>
+        <div class="legend-item"><span class="legend-char broken">╔╗</span><span>Maschine (defekt)</span></div>
+        <div class="legend-item"><span class="legend-char water">≈</span><span>Wasser / Leck</span></div>
+        <div class="legend-item"><span class="legend-char energy">$</span><span>Energie-Pickup</span></div>
+        <div class="legend-item"><span class="legend-char charge">⌂</span><span>Ladestation</span></div>
+        <div class="legend-item"><span class="legend-char door">░</span><span>Tür</span></div>
+    </div>
+
+</body>
+
+</html>

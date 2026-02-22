@@ -1,83 +1,29 @@
 package main
 
-import "application"
-import ui "application/ui"
-import "core:fmt"
+import "game"
 import rl "vendor:raylib"
 
-execute_one :: proc() {
-	fmt.printfln("Executed one")
-}
-
-execute_two :: proc() {
-	fmt.printfln("Executed two")
-}
-
 main :: proc() {
-	app := application.Application {
-		window = application.Application_Window {
+	app := game.Game {
+		window = game.Game_Window {
 			width = 1280,
 			height = 720,
-			title = "Hellope",
+			title = "LONA",
 			bg_color = rl.BLACK,
 		},
 		fps = 60,
 	}
-	application.setup(&app)
 
-	append(
-		&app.components,
-		ui.Component {
-			type = ui.Label {
-				text = "menu",
-				pos_x = app.window.width / 2 - 30,
-				pos_y = 50,
-				font_size = 30,
-				color = rl.WHITE,
-			},
-			visible = true,
-		},
-	)
-
-	append(
-		&app.components,
-		ui.Component {
-			type = ui.Button {
-				rect = {f32(app.window.width) / 2 - 125, 100, 250, 50},
-				color = rl.GRAY,
-				hover_color = rl.LIGHTGRAY,
-				label = "Click me!",
-				execute = execute_one,
-			},
-			visible = true,
-		},
-	)
-
-	append(
-		&app.components,
-		ui.Component {
-			type = ui.Button {
-				rect = {f32(app.window.width) / 2 - 125, 200, 250, 50},
-				color = rl.GRAY,
-				hover_color = rl.LIGHTGRAY,
-				label = "Another button!",
-				execute = execute_two,
-			},
-			visible = true,
-		},
-	)
+	game.setup(&app)
+	defer game.close(&app)
 
 	for !rl.WindowShouldClose() {
+
+		game.update(&app)
+
 		rl.BeginDrawing()
 		rl.ClearBackground(app.window.bg_color)
-
-		// TODO: a global renderer should draw the active scene
-		for &comp in app.components {
-			ui.draw(&comp)
-		}
-
+		game.draw(&app)
 		rl.EndDrawing()
 	}
-
-	application.close(&app)
 }

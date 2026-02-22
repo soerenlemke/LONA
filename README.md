@@ -78,3 +78,10 @@ Build and run tasks are pre-configured via `.vscode/tasks.json`.
 > `Ctrl+B` overrides the default VS Code sidebar toggle.
 > Use `Ctrl+Shift+B` instead if you want to keep that shortcut — it runs the default build task automatically.
 ```
+
+## License
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
+This project is licensed under the GNU General Public License v3.0.  
+See [LICENSE](LICENSE) for details.

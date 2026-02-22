@@ -1,9 +1,15 @@
 package main
 
+import "core:log"
+import "core:os"
 import "game"
 import rl "vendor:raylib"
 
 main :: proc() {
+	logger := log.create_console_logger(log.Level.Debug)
+	defer log.destroy_console_logger(logger)
+	context.logger = logger
+
 	app := game.Game {
 		window = game.Game_Window {
 			width = 1280,

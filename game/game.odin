@@ -4,10 +4,10 @@ import scene "scene"
 import rl "vendor:raylib"
 
 Game :: struct {
-	window:       Game_Window,
-	fps:          i32,
-	font:         rl.Font,
-	active_scene: scene.Scene, // TODO: should hold the active scene -> or better a scene manager knows that info
+	window:        Game_Window,
+	fps:           i32,
+	font:          rl.Font,
+	scene_manager: scene.Scene_Manager,
 }
 
 Game_Window :: struct {
@@ -15,12 +15,6 @@ Game_Window :: struct {
 	height:   i32,
 	title:    cstring,
 	bg_color: rl.Color,
-}
-
-// TODO: move to its own file in scenes package
-Scene_Manager :: struct {
-	scenes:       [dynamic]scene.Scene,
-	active_scene: ^scene.Scene,
 }
 
 setup :: proc(app: ^Game) {
@@ -33,20 +27,18 @@ setup :: proc(app: ^Game) {
 	} else {
 		rl.SetTargetFPS(app.fps)
 	}
-
-	scene.scene_init(&app.active_scene)
 }
 
 update :: proc(app: ^Game) {
-	scene.scene_update(&app.active_scene)
+	scene.scene_update(app.scene_manager.active_scene)
 }
 
 draw :: proc(app: ^Game) {
-	scene.scene_draw(&app.active_scene, app.font)
+	scene.scene_draw(app.scene_manager.active_scene, app.font)
 }
 
 close :: proc(app: ^Game) {
-	scene.scene_destroy(&app.active_scene)
+	scene.manager_scene_destroy(&app.scene_manager)
 	rl.UnloadFont(app.font)
 	rl.CloseWindow()
 }

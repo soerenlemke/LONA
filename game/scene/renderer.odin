@@ -6,8 +6,6 @@ CELL_WIDTH :: 18
 CELL_HEIGHT :: 20
 
 scene_draw :: proc(s: ^Scene, font: rl.Font) {
-	if !s.active do return
-
 	for row in 0 ..< GRID_H {
 		for col in 0 ..< GRID_W {
 			tile := s.grid[row][col]

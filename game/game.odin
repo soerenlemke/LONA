@@ -1,8 +1,7 @@
 package game
 
 import "core:log"
-import "core:strings"
-import scene "scene"
+import "scene"
 import rl "vendor:raylib"
 
 Game :: struct {
@@ -10,6 +9,7 @@ Game :: struct {
 	fps:           i32,
 	font:          rl.Font,
 	scene_manager: scene.Scene_Manager,
+	hud:           Hud,
 }
 
 Game_Window :: struct {
@@ -46,17 +46,22 @@ setup :: proc(app: ^Game) {
 
 	scene.manager_add_scene(&app.scene_manager, room_1)
 	scene.manager_set_active_scene(&app.scene_manager, 1)
+
+	app.hud = hud_init(app)
 }
 
 update :: proc(app: ^Game) {
 	scene.scene_update(app.scene_manager.active_scene)
+	hud_update(&app.hud, app)
 }
 
 draw :: proc(app: ^Game) {
 	scene.scene_draw(app.scene_manager.active_scene, app.font)
+	hud_draw(&app.hud)
 }
 
 close :: proc(app: ^Game) {
+	hud_destroy(&app.hud)
 	scene.manager_scene_destroy(&app.scene_manager)
 	rl.UnloadFont(app.font)
 	rl.CloseWindow()

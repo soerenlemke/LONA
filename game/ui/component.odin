@@ -9,6 +9,7 @@ Component :: struct {
 Component_Type :: union {
 	Button,
 	Label,
+	Progress_Bar,
 }
 
 // `draw` draws the component if visible and executes its function if clicked
@@ -23,5 +24,7 @@ draw :: proc(c: ^Component) {
 		}
 	case Label:
 		label_draw(&type)
+	case Progress_Bar:
+		progress_bar_draw(&type)
 	}
 }

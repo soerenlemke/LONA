@@ -23,8 +23,22 @@ setup :: proc(app: ^Game) {
 	app.window.height = scene.GRID_H * scene.CELL_SIZE
 
 	rl.InitWindow(app.window.width, app.window.height, app.window.title)
+
+	// codepoints from all tile glyphs so the font contains all used unicode signs
+	codepoints := make([dynamic]rune)
+	defer delete(codepoints)
+	for tile_type in scene.Tile_Type {
+		visual := scene.TILE_VISUALS[tile_type]
+		append(&codepoints, visual.glyph)
+	}
+
 	font_path := cstring("game/assets/unifont-16.0.04.ttf")
-	app.font = rl.LoadFontEx(font_path, 20, nil, 0)
+	app.font = rl.LoadFontEx(
+		font_path,
+		20,
+		raw_data(codepoints[:]),
+		i32(len(codepoints)),
+	)
 
 	if app.fps <= 60 {
 		rl.SetTargetFPS(60)

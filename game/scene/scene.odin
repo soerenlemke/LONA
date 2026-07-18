@@ -2,8 +2,8 @@ package scene
 
 import "core:log"
 
-GRID_W :: 32
-GRID_H :: 12
+GRID_W :: 36
+GRID_H :: 20
 
 Grid :: [GRID_H][GRID_W]Tile
 
@@ -15,7 +15,6 @@ Scene :: struct {
 
 // `scene_update` updates the scene and all of its containing scenes recursively if the scene is active itself
 scene_update :: proc(s: ^Scene) {
-	// logic for the current scene
 	for row in 0 ..< GRID_H {
 		for col in 0 ..< GRID_W {
 			_ = &s.grid[row][col]
@@ -26,7 +25,6 @@ scene_update :: proc(s: ^Scene) {
 		}
 	}
 
-	// recursively update all scenes
 	for &subscene in s.scenes {
 		scene_update(&subscene)
 	}

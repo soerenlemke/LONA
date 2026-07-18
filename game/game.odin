@@ -1,6 +1,7 @@
 package game
 
 import "core:log"
+import "core:strings"
 import scene "scene"
 import rl "vendor:raylib"
 
@@ -18,34 +19,22 @@ Game_Window :: struct {
 	bg_color: rl.Color,
 }
 
+// game area panel (3:1 -> game left, menu right)
+UI_PANEL_WIDTH :: (scene.GRID_W * scene.CELL_SIZE) / 3
+
 setup :: proc(app: ^Game) {
-	app.window.width = scene.GRID_W * scene.CELL_SIZE
-	app.window.height = scene.GRID_H * scene.CELL_SIZE
-	rl.InitWindow(app.window.width, app.window.height, app.window.title)
-
-	// codepoints from all tile glyphs so the font contains all used unicode signs
-	codepoints := make([dynamic]rune)
-	defer delete(codepoints)
-	for tile_type in scene.Tile_Type {
-		visual := scene.TILE_VISUALS[tile_type]
-		append(&codepoints, visual.glyph)
-	}
-
-	font_path := cstring("game/assets/unifont-16.0.04.ttf")
-	app.font = rl.LoadFontEx(
-		font_path,
-		20,
-		raw_data(codepoints[:]),
-		i32(len(codepoints)),
-	)
-
-	if app.fps <= 60 {
-		rl.SetTargetFPS(60)
-	} else {
-		rl.SetTargetFPS(app.fps)
-	}
-
 	scene.init_char_to_tile()
+
+	// sizing the main screen to always have the same
+	// ratio of game are and menu
+	game_area_width := scene.GRID_W * scene.CELL_SIZE
+	game_area_height := scene.GRID_H * scene.CELL_SIZE
+	app.window.width = i32(game_area_width + UI_PANEL_WIDTH)
+	app.window.height = i32(game_area_height)
+
+	rl.InitWindow(app.window.width, app.window.height, app.window.title)
+	set_fps(app, 60)
+	load_font(app, "game/assets/unifont-16.0.04.ttf")
 
 	room_1, ok := scene.load_map_from_mapfile("game/assets/maps/room_1.map", 1)
 	if !ok {
@@ -71,4 +60,33 @@ close :: proc(app: ^Game) {
 	scene.manager_scene_destroy(&app.scene_manager)
 	rl.UnloadFont(app.font)
 	rl.CloseWindow()
+}
+
+@(private)
+set_fps :: proc(app: ^Game, fps: i32) {
+	if app.fps <= 60 {
+		rl.SetTargetFPS(60)
+	} else {
+		rl.SetTargetFPS(app.fps)
+	}
+}
+
+@(private)
+load_font :: proc(app: ^Game, font_path: string) {
+	// codepoints from all tile glyphs so the font contains all used unicode signs
+	codepoints := make([dynamic]rune)
+	defer delete(codepoints)
+	for tile_type in scene.Tile_Type {
+		visual := scene.TILE_VISUALS[tile_type]
+		append(&codepoints, visual.glyph)
+	}
+
+	font_path_cstring := cstring(raw_data(font_path))
+
+	app.font = rl.LoadFontEx(
+		font_path_cstring,
+		20,
+		raw_data(codepoints[:]),
+		i32(len(codepoints)),
+	)
 }

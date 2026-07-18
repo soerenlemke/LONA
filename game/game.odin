@@ -21,7 +21,6 @@ Game_Window :: struct {
 setup :: proc(app: ^Game) {
 	app.window.width = scene.GRID_W * scene.CELL_SIZE
 	app.window.height = scene.GRID_H * scene.CELL_SIZE
-
 	rl.InitWindow(app.window.width, app.window.height, app.window.title)
 
 	// codepoints from all tile glyphs so the font contains all used unicode signs

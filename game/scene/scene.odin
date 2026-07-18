@@ -2,8 +2,8 @@ package scene
 
 import "core:log"
 
-GRID_W :: 40
-GRID_H :: 20
+GRID_W :: 32
+GRID_H :: 12
 
 Grid :: [GRID_H][GRID_W]Tile
 

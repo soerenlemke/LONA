@@ -1,5 +1,6 @@
 package game
 
+import "core:log"
 import scene "scene"
 import rl "vendor:raylib"
 
@@ -18,6 +19,9 @@ Game_Window :: struct {
 }
 
 setup :: proc(app: ^Game) {
+	app.window.width = scene.GRID_W * scene.CELL_SIZE
+	app.window.height = scene.GRID_H * scene.CELL_SIZE
+
 	rl.InitWindow(app.window.width, app.window.height, app.window.title)
 	font_path := cstring("game/assets/unifont-16.0.04.ttf")
 	app.font = rl.LoadFontEx(font_path, 20, nil, 0)
@@ -28,11 +32,18 @@ setup :: proc(app: ^Game) {
 		rl.SetTargetFPS(app.fps)
 	}
 
-	initial_scene := scene.Scene {
-		id = 0,
+	scene.init_char_to_tile()
+
+	room_1, ok := scene.load_map_from_mapfile("game/assets/maps/room_1.map", 1)
+	if !ok {
+		log.error("setup: failed to load room_1, falling back to empty scene")
+		room_1 = scene.Scene {
+			id = 1,
+		}
 	}
-	scene.manager_add_scene(&app.scene_manager, initial_scene)
-	scene.manager_set_active_scene(&app.scene_manager, 0)
+
+	scene.manager_add_scene(&app.scene_manager, room_1)
+	scene.manager_set_active_scene(&app.scene_manager, 1)
 }
 
 update :: proc(app: ^Game) {

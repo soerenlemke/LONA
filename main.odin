@@ -10,12 +10,7 @@ main :: proc() {
 	context.logger = logger
 
 	app := game.Game {
-		window = game.Game_Window {
-			width = 1280,
-			height = 720,
-			title = "LONA",
-			bg_color = rl.BLACK,
-		},
+		window = game.Game_Window{title = "LONA", bg_color = rl.BLACK},
 		fps = 60,
 	}
 

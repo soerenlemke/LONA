@@ -2,8 +2,7 @@ package scene
 
 import rl "vendor:raylib"
 
-CELL_WIDTH :: 18
-CELL_HEIGHT :: 20
+CELL_SIZE :: 24
 
 scene_draw :: proc(s: ^Scene, font: rl.Font) {
 	for row in 0 ..< GRID_H {
@@ -13,17 +12,17 @@ scene_draw :: proc(s: ^Scene, font: rl.Font) {
 			if !tile.visible do continue
 
 			vis := TILE_VISUALS[tile.type]
-			x := i32(col) * CELL_WIDTH
-			y := i32(row) * CELL_HEIGHT
+			x := i32(col) * CELL_SIZE
+			y := i32(row) * CELL_SIZE
 
-			rl.DrawRectangle(x, y, CELL_WIDTH, CELL_HEIGHT, vis.background)
+			rl.DrawRectangle(x, y, CELL_SIZE, CELL_SIZE, vis.background)
 
 			buf := glyph_to_cstring(vis.glyph)
 			rl.DrawTextEx(
 				font,
 				cstring(&buf[0]),
 				{f32(x), f32(y)},
-				f32(CELL_HEIGHT),
+				f32(CELL_SIZE) - 2,
 				0,
 				vis.foreground,
 			)

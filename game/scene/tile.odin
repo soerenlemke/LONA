@@ -84,24 +84,38 @@ _DOOR :: rl.Color{160, 112, 64, 255}
 // lookup table: Tile_Type -> Tile_Visual
 TILE_VISUALS := [Tile_Type]Tile_Visual {
 	.Empty           = {' ', _BLACK, _BLACK},
-	.Wall            = {'█', _WALL, _BLACK},
-	.Floor           = {'·', _FLOOR, _BLACK},
+	.Wall            = {'#', _WALL, _BLACK},
+	.Floor           = {'.', _FLOOR, _BLACK},
 	.Door_Open       = {'░', _DOOR, _BLACK},
 	.Door_Closed     = {'▓', _DOOR, _BLACK},
 	.Robot           = {'@', _ROBOT, _BLACK},
 	.Charge_Station  = {'⌂', _CHARGE, _BLACK},
 	.Dirt_Light      = {'%', _DIRT, _BLACK},
-	.Dirt_Heavy      = {'%', _DIRT_DARK, _BLACK},
+	.Dirt_Heavy      = {'&', _DIRT_DARK, _BLACK},
 	.Water_Leak      = {'≈', _WATER, _BLACK},
 	.Plant_Small     = {'♦', _PLANT, _BLACK},
 	.Plant_Medium    = {'♣', _PLANT, _BLACK},
 	.Plant_Large     = {'♠', _PLANT, _BLACK},
 	.Plant_Dead      = {'†', _PLANT_DEAD, _BLACK},
 	.Machine_Ok      = {'▣', _MACHINE, _BLACK},
-	.Machine_Damaged = {'▣', _DAMAGED, _BLACK},
-	.Machine_Broken  = {'▣', _BROKEN, _BLACK},
+	.Machine_Damaged = {'▤', _DAMAGED, _BLACK},
+	.Machine_Broken  = {'▥', _BROKEN, _BLACK},
 	.Energy_Node     = {'¤', _ENERGY, _BLACK},
 	.Energy_Pickup   = {'$', _ENERGY, _BLACK},
 	.Water_Pipe      = {'┼', _WATER, _BLACK},
 	.Water_Source    = {'○', _WATER, _BLACK},
+}
+
+// tile.odin
+CHAR_TO_TILE: map[rune]Tile_Type
+
+init_char_to_tile :: proc() {
+	CHAR_TO_TILE = make(map[rune]Tile_Type, len(Tile_Type))
+	for tile_type in Tile_Type {
+		visual := TILE_VISUALS[tile_type]
+		if visual.glyph in CHAR_TO_TILE {
+			panic("duplicate glyph in TILE_VISUALS, cannot build CHAR_TO_TILE")
+		}
+		CHAR_TO_TILE[visual.glyph] = tile_type
+	}
 }

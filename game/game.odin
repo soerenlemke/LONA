@@ -19,14 +19,20 @@ Game_Window :: struct {
 
 setup :: proc(app: ^Game) {
 	rl.InitWindow(app.window.width, app.window.height, app.window.title)
+	font_path := cstring("game/assets/unifont-16.0.04.ttf")
+	app.font = rl.LoadFontEx(font_path, 20, nil, 0)
 
-	app.font = rl.LoadFontEx("unifont.ttf", 20, nil, 0) // TODO: looks like this is not working, do we have to put the file in the repo?
-
-	if app.fps == 0 {
+	if app.fps <= 60 {
 		rl.SetTargetFPS(60)
 	} else {
 		rl.SetTargetFPS(app.fps)
 	}
+
+	initial_scene := scene.Scene {
+		id = 0,
+	}
+	scene.manager_add_scene(&app.scene_manager, initial_scene)
+	scene.manager_set_active_scene(&app.scene_manager, 0)
 }
 
 update :: proc(app: ^Game) {

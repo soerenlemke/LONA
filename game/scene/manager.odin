@@ -1,5 +1,7 @@
 package scene
 
+import "core:log"
+
 Scene_Manager :: struct {
 	scenes:       [dynamic]Scene,
 	active_scene: ^Scene,

@@ -1,7 +1,6 @@
 package main
 
 import "core:log"
-import "core:os"
 import "game"
 import rl "vendor:raylib"
 
